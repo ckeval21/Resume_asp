@@ -1,0 +1,24 @@
+﻿@model PersonDataViewModel
+
+<legend>@Html.GetLabel(LabelNames.ButtonEditData) </legend>
+<div class="profile-person-data">
+
+    @using (Html.BeginForm("Save", null, FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <fieldset class="border form-row">
+            <legend>@Html.GetLabel(LabelNames.PageProfile)</legend>
+            @Html.FormGroupWithFullEditorFor(mode => Model.FirstName, "col-md-10")
+            @Html.FormGroupWithFullEditorFor(mode => Model.LastName, "col-md-10")
+            @Html.FormGroupWithFullEditorFor(mode => Model.DateOfBirth, "col-md-10")
+        </fieldset>
+        @await Html.PartialAsync("_SaveCancelFieldset");
+    }
+    </div>
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+}
